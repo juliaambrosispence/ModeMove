@@ -1,10 +1,11 @@
 #ModMove 1.0
-#By j. beans
+#By Julia S
 #CC BY-SA 4.0
+#Python script that automatically moves Starbound .pak files
 
 import os, sys, io, shutil, time
 
-print("\nModMove 1.0 by j. beans\n")
+print("\nModMove 1.0 by Julia S\n")
 
 modsPath = ""
 
@@ -17,7 +18,7 @@ while not os.path.exists(modsPath):
 		modsPath += "\steamapps\workshop\content\\211820"
 	if not os.path.exists(modsPath):
 		print(modsPath, "is an invalid directory!\n")
-	
+
 destPath = ""
 while not os.path.exists(destPath):
 	print("Now enter your Starbound installation folder.\n(No input will default to C:\Program Files (x86)\Steam\steamapps\common\Starbound)")
@@ -28,7 +29,7 @@ while not os.path.exists(destPath):
 		destPath += "\mods"
 	if not os.path.exists(destPath):
 		print(destPath, "is an invalid directory!\n")
-	
+
 
 
 strDvd = "--------------------------------------------------------------------------------------------------------------"
@@ -49,15 +50,15 @@ for root, dirs, files in os.walk(modsPath, True):
 	if not first:
 		loopCount += 1
 		movedCount += 1
-		#print(strDvd)
+
 		normroot = os.path.normpath(root)
 		normrootlist = normroot.split(os.sep)
 		finalNamePath = destPath + "\\" + normrootlist[-1] + ".pak"
-		
+
 		if not len(files) == 0:
 			filePth = root + "\\" + files[0]
 			print("Copying", filePth)
-		
+
 			shutil.copy(filePth, destPath)
 			interFilePath = destPath + "\\" + "contents.pak"
 			print("To", interFilePath)
@@ -73,10 +74,10 @@ for root, dirs, files in os.walk(modsPath, True):
 		else:
 			print("No file in", root)
 			movedCount -= 1
-		
+
 		print(strDvd)
 		print()
-		
+
 	else:
 		first = False
 
